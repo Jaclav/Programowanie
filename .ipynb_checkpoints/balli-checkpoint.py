@@ -1,8 +1,8 @@
-#!/usr/bin/python3
+#!/bin/python3
 #argpas
 import sys
-import numpy as np
+import numpy
 
-R=float(sys.argv[1])
+R=input()
 print(4*np.pi*R**2)
 print(4/3*np.pi*R**3)

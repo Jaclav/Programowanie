@@ -1,0 +1,26 @@
+#!/bin/python3
+
+import sys
+import numpy as np
+
+
+def bin_search(x: float, L, m: int, M: int) -> int:
+    if m > M:
+        return -1
+
+    mid = (m + M) // 2
+
+    if L[mid] == x:
+        return mid
+    elif x < L[mid]:
+        return bin_search(x, L, m, mid - 1)
+    else:
+        return bin_search(x, L, mid + 1, M)
+
+
+if __name__ == "__main__":
+    X = float(sys.argv[1])
+    A = np.array(input().split()).astype(float)
+
+    A = np.sort(A)
+    print(bin_search(X, A, 0, len(A) - 1))

@@ -38,5 +38,5 @@ h = przygotuj_histogram(j["granice"], j["dane"])
 print(h)
 narysuj_histogram(h)
 
-
+print(json.load.__doc__)
 # %%

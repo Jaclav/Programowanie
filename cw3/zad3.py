@@ -31,18 +31,19 @@ def plot(X, Y, name):
 people = np.array(people)
 surface = np.array(surface)
 
-plot(years, people / 1e6, "Ludność [mln. os.]")
-plot(years, surface / 1e3, "Powierzchnia [tys km kw.]")
-plot(years, people / surface, "Gęstość zaludnienia [os / km kw]")
+plot(years, people / 1e6, w + " Ludność [mln. os.]")
+plot(years, surface / 1e3, w + " Powierzchnia [tys km kw.]")
+plot(years, people / surface, w + " Gęstość zaludnienia [os / km kw]")
 
+# POLSKA GUROM
 years = []
 people = []
 surface = []
 for y in j.keys():
-    a,b,c=0,0,0
+    a, b = 0, 0
     for w in j["2020"].keys():
-        a+=j[y][w]["ludność"]
-        b+=j[y][w]["powierzchnia km2"]
+        a += j[y][w]["ludność"]
+        b += j[y][w]["powierzchnia km2"]
     years.append(y)
     people.append(a)
     surface.append(b)

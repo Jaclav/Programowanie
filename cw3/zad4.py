@@ -28,7 +28,7 @@ def narysuj_histogram(hist):
     ax.bar(hist.keys(), hist.values())
 
     for label in ax.get_xticklabels():
-        label.set_rotation(90)
+        label.set_rotation(60)
 
 
 f = open("D-42.json", "r")

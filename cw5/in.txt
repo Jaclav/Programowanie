@@ -1,0 +1,4 @@
+pierwsza linia
+?komentarz
+druga linia
+fafsdfd

@@ -15,3 +15,4 @@ with open(sys.argv[1], "r") as f:
                 "^": lambda a, b: a**b,
             }
             w.write("%s = %.2f\n" % (l.strip(), C[i[1]](float(i[0]), float(i[2]))))
+            print(eval(l))

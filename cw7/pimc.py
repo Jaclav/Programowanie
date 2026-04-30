@@ -2,6 +2,7 @@
 
 # import ctypes#ctypes.c_ulong
 import sys
+import matplotlib.pyplot as plt
 
 
 class LCG:
@@ -28,14 +29,27 @@ class LCG:
         return self.__m - 1
 
 
-if __name__ == "__main__":
+def do(N: int):
     M = 100000000000
     l = LCG(53249, 1664525, 1013904223, M + 1)
     print(l.min, l.max)
-    N = int(sys.argv[1])
     k = 0
     for i in range(0, N):
         x, y = l() / M, l() / M
         if x**2 + y**2 <= 1:
             k += 1
-    print(4 * k / N)
+    return 4 * k / N
+
+
+if __name__ == "__main__":
+
+    if len(sys.argv) >= 2:
+        N = int(sys.argv[1])
+        print(do(N))
+    else:
+        N = [1e2, 1e3, 5e3, 1e4, 5e4, 1e5, 2e5, 5e5, 1e6, 2e6, 3e6, 4e6]
+        Y = [do(int(n)) for n in N]
+        plt.plot(N, Y, "o")
+        plt.xlabel("N number of iterations")
+        plt.ylabel("$\pi$ value out of MC")
+        plt.show()

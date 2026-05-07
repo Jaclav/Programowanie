@@ -52,4 +52,5 @@ if __name__ == "__main__":
         plt.plot(N, Y, "o")
         plt.xlabel("N number of iterations")
         plt.ylabel("$\pi$ value out of MC")
+        plt.savefig("aa.png")
         plt.show()

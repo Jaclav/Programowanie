@@ -1,6 +1,7 @@
 #!/bin/python3
 import sys
 from typing import Callable
+from collections.abc import Iterable
 
 
 class FibIterator:
@@ -21,7 +22,7 @@ class FibIterator:
         return self.__n
 
 
-def filter_gen(iterator: FibIterator, select: Callable[[int], bool]):
+def filter_gen(iterator: Iterable[int], select: Callable[[int], bool]):
     for x in iterator:
         if select(x):
             yield x

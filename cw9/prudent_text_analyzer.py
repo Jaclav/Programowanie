@@ -23,7 +23,22 @@ class TextAnalyzer:
                 if msg == "":
                     raise EmptyFileError
                 msg = msg.lower()
+                msg.replace(",", "")
+                msg.replace(".", "")
+                msg.replace("»", "")
+                msg.replace("«", "")
+                msg.replace("—", "")
+                msg.replace("/", "")
+                msg.replace("\\", "")
+                msg.replace("?", "")
+                msg.replace("!", "")
+                msg.replace(":", "")
+                msg.replace("(", "")
+                msg.replace(")", "")
+
                 for w in msg.split():
+                    if not w.isalpha():
+                        continue
                     if w in self.__stat.keys():
                         self.__stat[w] += 1
                     else:
@@ -40,7 +55,10 @@ class TextAnalyzer:
         return 0
 
     def __call__(self):
-        return self.__stat
+        d = self.__stat
+        asc = {k: v for k, v in sorted(d.items(), key=lambda item: item[1])}
+
+        return asc
 
 
 if __name__ == "__main__":
@@ -48,4 +66,5 @@ if __name__ == "__main__":
     ta.load_file(str(sys.argv[1]))
     print(ta.get_word_count("aa"))
     print(ta.get_word_count("ww"))
-    print(ta())
+    print(ta.get_word_count("i"))
+    # print(ta())

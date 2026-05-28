@@ -2,14 +2,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
-T0 = [70, 0, 70, 0]
+T0 = [70, 70, 70, 0]
 
 plate = np.zeros((50, 50))
-for i in range(0, 50):
-    plate[i, 0] = T0[0]
-    plate[i, -1] = T0[2]
-    plate[0, i] = T0[3]
-    plate[-1, i] = T0[1]
+plate[:, 0] = T0[0]
+plate[:, -1] = T0[2]
+plate[0, :] = T0[3]
+plate[-1, :] = T0[1]
 
 fig, ax = plt.subplots()
 line = ax.imshow(plate.T, "hot")

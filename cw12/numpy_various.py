@@ -33,6 +33,25 @@ parser.add_argument(
     required=True,
 )
 
+parser.add_argument(
+    "-c",
+    "--color",
+    type=int,
+    metavar=("R", "G", "B"),
+    help="kolor",
+    nargs=3,
+    required=True,
+)
+
+parser.add_argument(
+    "-n",
+    "--filter-size",
+    type=int,
+    metavar=("n"),
+    help="kolor",
+    required=True,
+)
+
 
 class Shape:
     matrix_size = [0, 0]
@@ -73,6 +92,21 @@ if args.square is not None:
     sh = Square(args.matrix_size, args.square)
     plain = np.fromfunction(sh.draw, plain.shape, dtype=float)
 
-# print(plain)
-plt.imshow(plain)
+
+def color_shape(shape_matrix, color, n):
+
+    sum = np.zeros(shape_matrix.shape)
+
+    sum += np.roll(shape_matrix, n, axis=0)
+    sum += np.roll(shape_matrix, n, axis=1)
+
+    sum /= (2 * n) ** 2
+    # print(sum)
+    C = np.einsum("ij,k->ijk", sum, color)
+    print(C)
+
+    return C.astype(np.uint8)
+
+
+plt.imshow(color_shape(plain, args.color, args.filter_size))
 plt.show()
